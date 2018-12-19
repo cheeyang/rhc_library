@@ -32,19 +32,19 @@
     color: white;
 }
 
-.loginWrapper {
+.formWrapper {
     position: relative;
     width: 80%;
 }
 
-.loginForm input {
+form input {
     margin: 5px;
     width: calc(100% - 14px);
     border-width: 0;
     padding: 2px;
 }
 
-label {
+form label {
     font-size: 12px;
     position: absolute;
     margin-top: 5px;
@@ -53,13 +53,31 @@ label {
     left: 0;
 }
 
-.register {
+.formButtonGroup {
+    font-size: 12px;
+    margin: 20px;
+}
+.formButtonGroup hr {
+    width: 20px;
+    display: inline-block;
+    position: relative;
+    transform: translate(0,-3px);
+}
+
+.loginButton, .registerButton {
     width: 100px;
     height: 30px;
-    margin-top: 30px;
-    background-color: rgba(100,100,100,0.8);
+    margin: 15px;
+    background-color: #777777;
     border-radius: 5px;
     color: white;
+}
+.loginForm .formButtonGroup .registerButton {
+    background-color: #555555;
+    height: 20px;
+    width: 60px;
+    font-size: 10px;
+    border: 0.5px solid white;
 }
 
 .bookListContainer {
@@ -74,4 +92,9 @@ label {
     border-radius: 5px;
     padding: 5px;
     border: 0.5px lightblue solid;
+}
+
+.errorMsg {
+    font-size: 12px;
+    color: red;
 }
