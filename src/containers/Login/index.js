@@ -63,7 +63,7 @@ class Login extends Component {
     render() {
         return (
             <div className='formWrapper'>
-                <form className='loginForm' onSubmit={this.verifyUser}>
+                <form className='loginForm' onSubmit={this.verifyUser} method='post'>
                     <div>
                         <label htmlFor='email'>Email Address</label><br/>
                         <input type='email' name='email' placeholder='Enter Your Email Address' value={this.state.email} onChange={this.updateInput}/>

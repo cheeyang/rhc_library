@@ -18,7 +18,7 @@ export default class Register extends Component {
 
     onSubmit = event => {
         event.preventDefault(); //prevents page from refreshing
-        
+
         if (this.state.password===this.state.password2) {
             this.addUser(event);
         } else {
@@ -53,7 +53,7 @@ export default class Register extends Component {
     render() {
         return (
             <div className='formWrapper'>
-                <form className='registrationForm' onSubmit={this.onSubmit}>
+                <form className='registrationForm' onSubmit={this.onSubmit} method='post'>
                     <div>
                         <label htmlFor='fullname'>Full Name</label><br/>
                         <input type='fullname' name='fullName' required placeholder='Enter Your Full Name' value={this.state.fullName} onChange={this.updateInput}/>
