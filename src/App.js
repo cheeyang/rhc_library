@@ -1,28 +1,20 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React from 'react';
+import Register from './containers/Register';
+import Navbar from './components/Navbar';
+import Browse from './containers/Browse';
 import './App.css';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
-}
+const App = () =>
+    <Router>
+        <div className='AppWrapper'>
+            <Navbar/>
+            <div className='AppBody'>
+                <Route exact path='/' render={()=><Redirect to='/register'/>}/>
+                <Route exact path='/register' component={Register}/>
+                <Route exact path='/browse' component={Browse}/>
+            </div>
+        </div>
+    </Router>
 
 export default App;
