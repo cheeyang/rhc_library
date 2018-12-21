@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import firebase from '../config/firebase';
+import { withRouter } from 'react-router-dom';
 
-export default class Register extends Component {
+class Register extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -12,22 +13,22 @@ export default class Register extends Component {
         }
     }
 
-    updateInput = event => {
+    _updateInput = event => {
         this.setState({[event.target.name] : event.target.value}, ()=>console.log('updated state :: ',this.state));
     }
 
-    onSubmit = event => {
+    _onSubmit = event => {
         event.preventDefault(); //prevents page from refreshing
 
         if (this.state.password===this.state.password2) {
-            this.addUser(event);
+            this._addUser(event);
         } else {
             //do nothing
             console.log('passwords do not match')
         }
     }
 
-    addUser = async event => {
+    _addUser = async event => {
 
         const db = firebase.firestore();
         db.settings({
@@ -48,35 +49,37 @@ export default class Register extends Component {
             password: '',
             password2: '',
         })
+        this.props.history.push('/login')
     }
 
     render() {
         return (
             <div className='formWrapper'>
-                <form className='registrationForm' onSubmit={this.onSubmit} method='post'>
+                <form className='registrationForm' onSubmit={this._onSubmit} method='post'>
                     <div>
                         <label htmlFor='fullname'>Full Name</label><br/>
-                        <input type='fullname' name='fullName' required placeholder='Enter Your Full Name' value={this.state.fullName} onChange={this.updateInput}/>
+                        <input type='fullname' name='fullName' required placeholder='Enter Your Full Name' value={this.state.fullName} onChange={this._updateInput}/>
                     </div>
                     <div>
                         <label htmlFor='email'>Email Address</label><br/>
-                        <input type='email' name='email' required placeholder='Enter Your Email Address' value={this.state.email} onChange={this.updateInput}/>
+                        <input type='email' name='email' required placeholder='Enter Your Email Address' value={this.state.email} onChange={this._updateInput}/>
                     </div>
                     <div>
                         <label htmlFor='password'>Password</label><br/>
-                        <input type='password' name='password' minLength='8' title='Password cannot contain certain symbols, such as [];:|><?\`"~()' pattern='[A-Za-z0-9!@#$%^&*]*' required placeholder='Enter Password' value={this.state.password} onChange={this.updateInput}/>
+                        <input type='password' name='password' minLength='8' title='Password cannot contain certain symbols, such as [];:|><?\`"~()' pattern='[A-Za-z0-9!@#$%^&*]*' required placeholder='Enter Password' value={this.state.password} onChange={this._updateInput}/>
                     </div>
                     <div>
                         <label htmlFor='password'>Confirm Password</label><br/>
-                        <input type='password' name='password2' minLength='8' required placeholder='Re-enter Password' value={this.state.password2} onChange={this.updateInput}/>
+                        <input type='password' name='password2' minLength='8' required placeholder='Re-enter Password' value={this.state.password2} onChange={this._updateInput}/>
                     </div>
                     {this.state.password2 !== '' && this.state.password!==this.state.password2 && <p className='errorMsg'>Passwords do not match</p>}
                     <div className='formButtonGroup'>
                         <button className='registerButton' type='submit'>Register</button>
                     </div>
                 </form>
-                <br/><br/>
             </div>
         )
     }
 }
+
+export default withRouter(Register);

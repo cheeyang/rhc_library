@@ -3,7 +3,7 @@ import firebase from 'config/firebase';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { userLogin } from './actions';
-import { Redirect, Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom';
 
 class Login extends Component {
     constructor(props) {
@@ -16,11 +16,11 @@ class Login extends Component {
         }
     }
 
-    updateInput = event => {
+    _updateInput = event => {
         this.setState({[event.target.name] : event.target.value}, ()=>console.log('updated state :: ',this.state));
     }
 
-    verifyUser = async (event) => {
+    _verifyUser = async (event) => {
         event.preventDefault(); //prevents page from refreshing
 
         const db = firebase.firestore();
@@ -42,6 +42,7 @@ class Login extends Component {
                     email: '',
                     password: '',
                 })
+                this.props.session.isLoggedIn && this._redirectPage();
             } else {
                 throw 'wrong password';
             }
@@ -60,18 +61,26 @@ class Login extends Component {
         }
     }
 
+    _redirectPage = () => {
+        if (this.props.session.isAdmin) {
+            this.props.history.push('/admin');
+        } else {
+            this.props.history.push('/browse');
+        }
+    }
+
     render() {
         return (
             <div className='formWrapper'>
-                <form className='loginForm' onSubmit={this.verifyUser} method='post'>
+                <form className='loginForm' onSubmit={this._verifyUser} method='post'>
                     <div>
                         <label htmlFor='email'>Email Address</label><br/>
-                        <input type='email' name='email' placeholder='Enter Your Email Address' value={this.state.email} onChange={this.updateInput}/>
+                        <input type='email' name='email' placeholder='Enter Your Email Address' value={this.state.email} onChange={this._updateInput}/>
                     </div>
                     {this.state.displayWrongEmailError && <p className='errorMsg'>You have entered an invalid email address</p>}
                     <div>
                         <label htmlFor='password'>Password</label><br/>
-                        <input type='password' name='password' placeholder='Enter Password' value={this.state.password} onChange={this.updateInput}/>
+                        <input type='password' name='password' placeholder='Enter Password' value={this.state.password} onChange={this._updateInput}/>
                     </div>
                     {this.state.displayWrongPasswordError && <p className='errorMsg'>You have entered an invalid password</p>}
                     <div className='formButtonGroup'>
@@ -80,10 +89,9 @@ class Login extends Component {
                         <Link to='./register'><button className='registerButton' type='submit'>Sign Up</button></Link>
                     </div>
                 </form>
-                {this.props.session.isLoggedIn && <Redirect to='/browse'/>}
             </div>
         )
     }
 }
 
-export default connect((state)=>({session:state.session}), (dispatch)=>(bindActionCreators({userLogin}, dispatch)))(Login);
+export default connect((state)=>({session:state.session}), (dispatch)=>(bindActionCreators({userLogin}, dispatch)))(withRouter(Login));

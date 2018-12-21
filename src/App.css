@@ -84,7 +84,7 @@ form label {
     width: 90%;
 }
 
-.bookTable {
+.bookInfo {
     display: grid;
     grid-template-columns: 22% 78%;
     row-gap: 5px;
@@ -92,6 +92,8 @@ form label {
     border-radius: 5px;
     padding: 5px;
     border: 0.5px lightblue solid;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .errorMsg {

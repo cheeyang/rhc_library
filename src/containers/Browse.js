@@ -36,7 +36,7 @@ export default class Browse extends Component {
         return (
             <div className='bookListContainer'>
                 {this.state.books && this.state.books.map((book, i)=>
-                    <div className='bookTable' key={i}>
+                    <div className='bookInfo' key={i}>
                         <p>Title:</p>
                         <p>{book.title}</p>
                         <p>Author:</p>
