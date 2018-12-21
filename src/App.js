@@ -4,16 +4,17 @@ import Navbar from './components/Navbar';
 import Browse from './containers/Browse';
 import Login from './containers/Login';
 import AdminPage from './containers/AdminPage';
+import PreLoginHeader from './components/PreLoginHeader';
 import './App.css';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import Store from 'core/store';
+import { connect } from 'react-redux';
 
-const App = () =>
-    <Provider store={Store}>
+const App = (props) => {
+    const { isLoggedIn } = props.session;
+    return (
         <Router>
             <div className='AppWrapper'>
-                <Navbar/>
+                {!!isLoggedIn ? <Navbar/> : <PreLoginHeader/>}
                 <div className='AppBody'>
                     <Route exact path='/' render={()=><Redirect to='/login'/>}/>
                     <Route exact path='/login' component={Login}/>
@@ -23,6 +24,7 @@ const App = () =>
                 </div>
             </div>
         </Router>
-    </Provider>
+    )
+}
 
-export default App;
+export default connect(({session})=>({session}))(App);

@@ -3,6 +3,11 @@
     padding: 0;
 }
 
+.rhcLogo {
+    height: 100px;
+    resize: both;
+}
+
 .AppWrapper {
     text-align: center;
     background-color: #282c34;
