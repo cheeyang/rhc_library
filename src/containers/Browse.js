@@ -12,6 +12,9 @@ export default class Browse extends Component {
 
     componentDidMount(){
         this.fetchBooks();
+        firebase.auth().onAuthStateChanged((user)=>{
+            this.user = user;
+        })
     }
 
     fetchBooks = () => {

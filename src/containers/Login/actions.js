@@ -1,4 +1,4 @@
-export const userLogin = (user) => ({
-    type: 'USER_LOGIN',
-    payload: {email: user.email, isAdmin: user.isAdmin}
+export const updateUser = (user) => ({
+    type: 'UPDATE_USER',
+    payload: user
 })

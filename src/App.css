@@ -37,6 +37,11 @@
     color: white;
 }
 
+.AppFooterWrapper {
+    font-size: 10px;
+    padding: 5px;
+}
+
 .formWrapper {
     position: relative;
     width: 80%;
