@@ -33,6 +33,7 @@
 .Navbar {
     display: flex;
     flex-grow: 1;
+    height: 100%;
     flex-direction: row;
     justify-content: center;
     align-items: center;
@@ -44,17 +45,23 @@
     align-items: center;
     color: white;
 }
-.NavbarContainer .LogOutIcon {
+.NavbarContainer .logOutIcon {
     position: absolute;
     height: 40px;
     color: white;
-    right: 10px;
+    padding-top: 5px;
+    background-color: unset;
+    border: unset;
+    right: 20px;
 }
 .NavbarContainer .drawerIcon {
     position: absolute;
     height: 40px;
     color: white;
-    left: 10px;
+    padding-top: 5px;
+    background-color: unset;
+    border: unset;
+    left: 20px;
 }
 
 .AppBody {

@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
-import { Icon, Drawer } from 'antd'
+import { Icon } from 'antd'
 import firebase from 'firebase';
 import { withRouter } from 'react-router-dom';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
 import ListItemText from '@material-ui/core/ListItemText';
-import MDrawer from '@material-ui/core/Drawer';
+import Drawer from '@material-ui/core/Drawer';
 
 const sideList = (
       <div>
         <List>
           {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
+            <ListItem Button key={text}>
               <ListItemText primary={text} />
             </ListItem>
           ))}
@@ -20,7 +20,7 @@ const sideList = (
         <Divider />
         <List>
           {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
+            <ListItem Button key={text}>
               <ListItemText primary={text} />
             </ListItem>
           ))}
@@ -55,19 +55,19 @@ class Navbar extends Component {
     render(){
         return (
             <div className='NavbarContainer'>
-                <MDrawer open={this.state.drawerVisible} onClose={this._closeDrawer}>
-                <div onClick={this._closeDrawer} onKeyDown={this._closeDrawer}>
-                    {sideList}
-                </div>
-                </MDrawer>
+                <Drawer open={this.state.drawerVisible} onClose={this._closeDrawer}>
+                    <div onClick={this._closeDrawer} onKeyDown={this._closeDrawer}>
+                        {sideList}
+                    </div>
+                </Drawer>
                 <button className='drawerIcon' onClick={this._openDrawer}>
-                    <Icon className='icon' type="menu-unfold"/>
+                    <Icon className='icon' type="menu-unfold" style={{fontSize:17}}/>
                 </button>
                 <div className='Navbar'>
-                    <button className='Navbar-item' onClick={()=>this.props.history.push('/browse')}>Browse</button>
+                    <span className='Navbar-item'>Browse</span>
                 </div>
-                <button className='LogOutIcon' onClick={this._onPressLogout}>
-                    <Icon className='icon' type="poweroff"/>
+                <button className='logOutIcon' onClick={this._onPressLogout}>
+                    <Icon className='icon' type="poweroff" style={{fontSize:17}}/>
                 </button>
             </div>
         )
