@@ -37,7 +37,7 @@ export default class Browse extends Component {
 
     render() {
         return (
-            <div className='browse listContainer'>
+            <div className='listContainer'>
                 { this.state.isLoading ?
                     <div className='fullScreen'>
                         <CircularProgress className='loadingIcon'/>
