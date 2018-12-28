@@ -37,10 +37,10 @@ export default class Browse extends Component {
 
     render() {
         return (
-            <div className='listContainer'>
+            <div className='browse listContainer'>
                 { this.state.isLoading ?
-                    <div>
-                        <CircularProgress/>
+                    <div className='fullScreen'>
+                        <CircularProgress className='loadingIcon'/>
                     </div>
                 : this.state.books && this.state.books.map((book, i)=>
                     <div className='listItem' key={i}>

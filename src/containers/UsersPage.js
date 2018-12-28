@@ -38,8 +38,8 @@ export default class Browse extends Component {
         return (
             <div className='listContainer'>
                 { this.state.isLoading ?
-                    <div>
-                        <CircularProgress/>
+                    <div class='fullScreen'>
+                        <CircularProgress className='loadingIcon'/>
                     </div>
                 : this.state.users && this.state.users.map((user, i)=>
                     <div className='listItem' key={i}>

@@ -1,3 +1,8 @@
+:root {
+    --headerHeight: 50px;
+    --footerHeight: 80px;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -26,8 +31,24 @@
     position: relative;
 }
 
+.fullScreen {
+    position: absolute;
+    top: var(--headerHeight);
+    left: 0;
+    height: calc(100% - var(--headerHeight));
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #002329A7;
+}
+.loadingIcon {
+    position: relative;
+    top: calc(var(--footerHeight) / -2);
+}
+
 .NavbarContainer {
-    height: 50px;
+    height: var(--headerHeight);
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -52,14 +73,14 @@
 }
 .NavbarContainer .logOutIcon {
     position: absolute;
-    height: 40px;
+    height: var(--headerHeight);
     color: white;
     padding-top: 5px;
     right: 20px;
 }
 .NavbarContainer .drawerIcon {
     position: absolute;
-    height: 40px;
+    height: var(--headerHeight);
     color: white;
     padding-top: 5px;
     left: 20px;
@@ -68,21 +89,18 @@
 .AppBody {
     display: flex;
     width: 100%;
-    height: calc(100% - 40px);
-    flex-grow: 1;
+    height: calc(100% - var(--headerHeight));
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     color: white;
-    border: red 2px dotted;
     overflow-y: scroll;
 }
 
 .AppFooterWrapper {
     font-size: 10px;
     padding: 5px;
-    margin-bottom: 80px;
-    border: green dashed 1px;
+    margin-bottom: var(--footerHeight);
 }
 
 .formWrapper {
@@ -96,8 +114,7 @@
 
 .listContainer {
     width: 90%;
-    border: 1px yellow solid;
-    flex: 1;
+    flex-grow: 1;
 }
 .listItem {
     display: grid;

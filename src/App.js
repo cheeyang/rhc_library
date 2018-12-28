@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Browse from './containers/Browse';
 import Login from './containers/Login';
 import UsersPage from './containers/UsersPage';
+import AddBook from 'containers/AddBook';
 import PreLoginHeader from './components/PreLoginHeader';
 import AppFooter from 'containers/AppFooter';
 import './App.css';
@@ -37,6 +38,7 @@ class App extends Component {
                             <Route exact path='/register' component={Register}/>
                             <Route exact path='/browse' component={Browse}/>
                             <Route exact path='/users' component={UsersPage}/>
+                            <Route exact path='/add' component={AddBook}/>
                         </Switch>
                     </div>
                     <AppFooter/>
