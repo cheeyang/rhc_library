@@ -8,26 +8,6 @@ import Divider from '@material-ui/core/Divider';
 import ListItemText from '@material-ui/core/ListItemText';
 import Drawer from '@material-ui/core/Drawer';
 
-const sideList = (
-      <div>
-        <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem Button key={text}>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem Button key={text}>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-      </div>
-    );
-
 class Navbar extends Component {
     constructor(props) {
         super(props);
@@ -51,8 +31,50 @@ class Navbar extends Component {
         this.setState({drawerVisible:false});
     }
 
+    _onClickDrawerElement = (text) => {
+        switch(text) {
+            case 'Logout' :
+                this._onPressLogout();
+                break;
+            case 'Users' :
+                this.props.history.push('/users');
+                break;
+            case 'Browse' :
+                this.props.history.push('/browse');
+                break;
+            case 'Add A Book':
+                this.props.history.push('/add');
+                break;
+            case 'Account':
+                this.props.history.push('/account');
+                break;
+            default:
+                this.props.history.push('/not-found');
+        }
+    }
+
 
     render(){
+        const sideList = (
+          <div>
+            <List>
+              {['Users', 'Browse', 'Add A Book', 'Send email', 'Drafts'].map((text, index) => (
+                <ListItem button key={text} onClick={()=>this._onClickDrawerElement(text)}>
+                  <ListItemText primary={text}/>
+                </ListItem>
+              ))}
+            </List>
+            <Divider />
+            <List>
+              {['Account', 'Logout'].map((text, index) => (
+                <ListItem button key={text} onClick={()=>this._onClickDrawerElement(text)}>
+                  <ListItemText primary={text} />
+                </ListItem>
+              ))}
+            </List>
+          </div>
+        );
+
         return (
             <div className='NavbarContainer'>
                 <Drawer open={this.state.drawerVisible} onClose={this._closeDrawer}>

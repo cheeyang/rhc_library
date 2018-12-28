@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import firebase from '../config/firebase';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 export default class Browse extends Component {
     constructor(props) {
         super(props);
         this.state = {
             users: null,
+            isLoading: false
         }
     }
 
@@ -14,6 +16,7 @@ export default class Browse extends Component {
     }
 
     fetchUsers = () => {
+        this.setState({isLoading:true});
         const db = firebase.firestore();
         db.settings({
             timestampsInSnapshots: true
@@ -23,7 +26,7 @@ export default class Browse extends Component {
             const usersCollection = querySnapshot.docs;
             console.log('usersCollection :: ', usersCollection);
             const users = usersCollection.map((doc) => doc.data())
-            this.setState({users: users}, ()=>console.log(this.state));
+            this.setState({users: users, isLoading:false}, ()=>console.log(this.state));
         })
     }
 
@@ -33,9 +36,13 @@ export default class Browse extends Component {
 
     render() {
         return (
-            <div className='bookListContainer'>
-                {this.state.users && this.state.users.map((user, i)=>
-                    <div className='bookInfo' key={i}>
+            <div className='listContainer'>
+                { this.state.isLoading ?
+                    <div>
+                        <CircularProgress/>
+                    </div>
+                : this.state.users && this.state.users.map((user, i)=>
+                    <div className='listItem' key={i}>
                         <p>Name:</p>
                         <p>{user.fullName}</p>
                         <p>Email:</p>

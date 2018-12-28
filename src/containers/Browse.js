@@ -37,13 +37,13 @@ export default class Browse extends Component {
 
     render() {
         return (
-            <div className='bookListContainer'>
+            <div className='listContainer'>
                 { this.state.isLoading ?
                     <div>
                         <CircularProgress/>
                     </div>
                 : this.state.books && this.state.books.map((book, i)=>
-                    <div className='bookInfo' key={i}>
+                    <div className='listItem' key={i}>
                         <p>Title:</p>
                         <p>{book.title}</p>
                         <p>Author:</p>
