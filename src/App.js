@@ -40,6 +40,7 @@ class App extends Component {
                             <Route exact path='/users' component={UsersPage}/>
                             <Route exact path='/add' component={AddBook}/>
                         </Switch>
+                        <div className='fade'/>
                     </div>
                     <AppFooter/>
                 </div>
