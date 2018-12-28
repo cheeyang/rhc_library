@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import firebase from '../config/firebase';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 export default class Browse extends Component {
     constructor(props) {
@@ -7,6 +8,7 @@ export default class Browse extends Component {
         this.state = {
             bookIdsSelected: [],
             books: null,
+            isLoading: false,
         }
     }
 
@@ -15,6 +17,7 @@ export default class Browse extends Component {
     }
 
     fetchBooks = () => {
+        this.setState({isLoading: true});
         const db = firebase.firestore();
         db.settings({
             timestampsInSnapshots: true
@@ -24,7 +27,7 @@ export default class Browse extends Component {
             const booksCollection = querySnapshot.docs;
             console.log('booksCollection :: ', booksCollection);
             const books = booksCollection.map((doc) => doc.data())
-            this.setState({books: books}, ()=>console.log(this.state));
+            this.setState({books: books, isLoading: false}, ()=>console.log(this.state));
         })
     }
 
@@ -35,7 +38,11 @@ export default class Browse extends Component {
     render() {
         return (
             <div className='bookListContainer'>
-                {this.state.books && this.state.books.map((book, i)=>
+                { this.state.isLoading ?
+                    <div>
+                        <CircularProgress/>
+                    </div>
+                : this.state.books && this.state.books.map((book, i)=>
                     <div className='bookInfo' key={i}>
                         <p>Title:</p>
                         <p>{book.title}</p>
