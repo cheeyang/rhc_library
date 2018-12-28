@@ -13,7 +13,11 @@ class Login extends Component {
 
         this.uiConfig = {
             signInFlow: 'redirect',
-            signInSuccessUrl: '/browse',
+            callbacks: {
+                signInSuccessWithAuthResult: (authResult) => {
+                    this.props.history.push('/browse');
+                }
+            },
             signInOptions: [
                 firebase.auth.GoogleAuthProvider.PROVIDER_ID,
                 firebase.auth.FacebookAuthProvider.PROVIDER_ID,

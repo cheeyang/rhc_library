@@ -7,7 +7,7 @@ import AdminPage from './containers/AdminPage';
 import PreLoginHeader from './components/PreLoginHeader';
 import AppFooter from './containers/AppFooter';
 import './App.css';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import firebase from 'firebase';
 import { updateUser } from 'containers/Login/actions';
@@ -22,6 +22,7 @@ class App extends Component {
             console.log('auth state changed', user);
             this.props.updateUser(user);
         })
+        firebase.auth().setPersistence('session');
     }
     render() {
         const { user } = this.props.session;
@@ -30,11 +31,13 @@ class App extends Component {
                 <div className='AppWrapper'>
                     {!!user ? <Navbar/> : <PreLoginHeader/>}
                     <div className='AppBody'>
-                        <Route exact path='/' render={()=><Redirect to='/login'/>}/>
-                        <Route exact path='/login' component={Login}/>
-                        <Route exact path='/register' component={Register}/>
-                        <Route exact path='/browse' component={Browse}/>
-                        <Route exact path='/admin' component={AdminPage}/>
+                        <Switch>
+                            <Route exact path='/' render={()=><Redirect to='/login'/>}/>
+                            <Route exact path='/login' component={Login}/>
+                            <Route exact path='/register' component={Register}/>
+                            <Route exact path='/browse' component={Browse}/>
+                            <Route exact path='/admin' component={AdminPage}/>
+                        </Switch>
                     </div>
                     <AppFooter/>
                 </div>
