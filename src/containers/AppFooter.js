@@ -8,10 +8,8 @@ class AppFooter extends Component {
     render() {
         return (
             <div className='AppFooterWrapper'>
-                {!!this.props.session.user ?
-                    this.props.session.user.isAnonymous ?
-                        `You are currently logged in anonymously. You will not be able to borrow books.`
-                        : `You are currently logged in as: ${this.props.session.user.displayName}`
+                {(this.props.session.user && !this.props.session.user.isAnonymous )
+                ? `You are currently logged in as: ${this.props.session.user.displayName}`
                 : `You are not logged in. You will not be able to borrow books.`}
             </div>
         )

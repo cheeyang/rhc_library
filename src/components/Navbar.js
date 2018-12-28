@@ -15,8 +15,14 @@ class Navbar extends Component {
         this.state = {
             drawerVisible: false
         }
-    }
 
+        this.routeTitleMapping = {
+            'Users' : '/users',
+            'Browse' : '/browse',
+            'Add A Book' : '/add',
+            'Account' : '/account',
+        }
+    }
     _onPressLogout = () => {
         firebase.auth().signOut();
         this.props.history.push('/');
@@ -32,26 +38,20 @@ class Navbar extends Component {
     }
 
     _onClickDrawerElement = (text) => {
+        const newRoute = this.routeTitleMapping[text];
         switch(text) {
             case 'Logout' :
                 this._onPressLogout();
                 break;
-            case 'Users' :
-                this.props.history.push('/users');
-                break;
-            case 'Browse' :
-                this.props.history.push('/browse');
-                break;
-            case 'Add A Book':
-                this.props.history.push('/add');
-                break;
-            case 'Account':
-                this.props.history.push('/account');
-                break;
             default:
-                this.props.history.push('/not-found');
+                !!newRoute
+                ? this.props.history.push(newRoute)
+                : this.props.history.push('/page-not-found')
         }
     }
+
+    _getTitleFromRoute = (route) =>
+        Object.keys(this.routeTitleMapping).find(key => this.routeTitleMapping[key] === route)
 
 
     render(){
@@ -86,7 +86,7 @@ class Navbar extends Component {
                     <Icon className='icon' type="menu-unfold" style={{fontSize:17}}/>
                 </button>
                 <div className='Navbar'>
-                    <span className='Navbar-item'>Browse</span>
+                    <span className='Navbar-item'>{this._getTitleFromRoute(this.props.location.pathname)}</span>
                 </div>
                 <button className='logOutIcon' onClick={this._onPressLogout}>
                     <Icon className='icon' type="poweroff" style={{fontSize:17}}/>
