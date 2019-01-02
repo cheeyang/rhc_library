@@ -54,6 +54,7 @@ export default class Browse extends Component {
                         <p>{book.ISBN}</p>
                     </div>
                 )}
+                <div className='fade'/>
             </div>
         )
     }

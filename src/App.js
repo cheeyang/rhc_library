@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import Register from './containers/Register';
-import Navbar from './components/Navbar';
+import Navbar from 'containers/Navbar';
 import Browse from './containers/Browse';
 import Login from './containers/Login';
 import UsersPage from './containers/UsersPage';
 import AddBook from 'containers/AddBook';
 import PreLoginHeader from './components/PreLoginHeader';
+import PageNotFound from 'containers/PageNotFound';
 import AppFooter from 'containers/AppFooter';
 import './App.css';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
@@ -39,8 +40,8 @@ class App extends Component {
                             <Route exact path='/browse' component={Browse}/>
                             <Route exact path='/users' component={UsersPage}/>
                             <Route exact path='/add' component={AddBook}/>
+                            <Route exact path='/page-not-found' component={PageNotFound}/>
                         </Switch>
-                        <div className='fade'/>
                     </div>
                     <AppFooter/>
                 </div>
