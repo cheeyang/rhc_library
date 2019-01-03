@@ -44,7 +44,7 @@ export default class Browse extends Component {
                 : this.state.users && this.state.users.map((user, i)=>
                     <div className='listItem' key={i}>
                         <p>Name:</p>
-                        <p>{user.fullName}</p>
+                        <p>{user.displayName}</p>
                         <p>Email:</p>
                         <p>{user.email}</p>
                     </div>
