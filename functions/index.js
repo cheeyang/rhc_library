@@ -1,4 +1,11 @@
 const functions = require('firebase-functions');
+
+//initialize firestore with Admin SDK
+const admin = require('firebase-admin');
+admin.initializeApp(functions.config().firebase);
+const db = admin.firestore();
+db.settings({timestampsInSnapshot: true});
+
 const nodemailer = require('nodemailer');
 // Configure the email transport using the default SMTP transport and a GMail account.
 // For Gmail, enable these:
@@ -19,10 +26,29 @@ const mailTransport = nodemailer.createTransport({
 const APP_NAME = 'RHC Library Web App';
 
 exports.sendWelcomeEmail = functions.auth.user().onCreate((user) => {
-  const email = user.email; // The email of the user.
-  const displayName = user.displayName; // The display name of the user.
-
-  return sendWelcomeEmail(email, displayName);
+    const email = user.email; // The email of the user to be created
+    const displayName = user.displayName;
+    console.log('Auth User Object Data :: ', user);
+    return db.collection("users").doc(user.uid).get().then((doc)=>{
+        console.log('docSnapshot :: ', doc);
+        console.log('docSnapshot.exists :: ', doc.exists);
+        return doc.exists;
+    }).then(userFound=>{
+        console.log('user found? :: ',userFound?'yes':'no');
+        if (userFound) {
+            //do nothing
+            console.log('user found. doing nothing');
+            return '';
+        } else {
+            db.collection("users").doc(user.uid).set({
+                displayName,
+                email,
+                isAdmin: false,
+                booksBorrowed: []
+            });
+            return sendWelcomeEmail(email, displayName);
+        }
+    })
 });
 
 function sendWelcomeEmail(email, displayName) {
@@ -34,7 +60,7 @@ function sendWelcomeEmail(email, displayName) {
   // The user subscribed to the newsletter.
   mailOptions.subject = `Welcome to ${APP_NAME}!`;
   mailOptions.text =
-    `Hey ${displayName || 'there'}!\n\nWelcome to the ${APP_NAME}. \n\nYou may now borrow up to 3 books (for up to 90 days each) before you are required to return it to the library. \n\nAnother email will be sent to you once any of your books are due in 14 days. \n\n If you have any comments, feedback, or suggestions, please send an email to tehcheeyang@gmail.com. \n\nThank you for using this service!`;
+    `Hey ${displayName || 'there'}!\n\nWelcome to the ${APP_NAME}. \n\nYou may now borrow up to 3 books (for up to 90 days each) before you are required to return it to the library. \n\nAnother email will be sent to you once any of your books are due in 14 days. \n\n If you have any comments, feedback, or suggestions, please send an email to tehcheeyang@gmail.com. \n\nThank you for using this service!\n\nRegards,\nAdmin@RhcLibrary`;
   return mailTransport.sendMail(mailOptions).then(() => {
     return console.log('New welcome email sent to:', email);
   });
