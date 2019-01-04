@@ -148,6 +148,11 @@ button {
     color: red;
 }
 
+.successMsg {
+    font-size: var(--text-header);
+    color: white;
+}
+
 /****@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@***/
 .formWrapper {
     position: relative;
@@ -174,6 +179,12 @@ form input {
     padding: 4px;
     height: 30px;
     font-size: var(--text-body);
+}
+form .reactSelect {
+    margin: 5px;
+    width: calc(100% - 5px);
+    font-size: var(--text-body);
+    color: var(--app-bg-color);
 }
 
 form label {

@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import firebase from '../config/firebase';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
+const db = firebase.firestore();
+db.settings({
+    timestampsInSnapshots: true
+});
+
 export default class Browse extends Component {
     constructor(props) {
         super(props);
@@ -18,10 +23,7 @@ export default class Browse extends Component {
 
     fetchBooks = () => {
         this.setState({isLoading: true});
-        const db = firebase.firestore();
-        db.settings({
-            timestampsInSnapshots: true
-        });
+
         const booksRef = db.collection('books')
         booksRef.get().then( querySnapshot => {
             const booksCollection = querySnapshot.docs;
@@ -48,10 +50,10 @@ export default class Browse extends Component {
                         <p>{book.title}</p>
                         <p>Author:</p>
                         <p>{book.author}</p>
-                        <p>Genre:</p>
-                        <p>{book.genres.join(', ')}</p>
+                        <p>Tags:</p>
+                        <p>{book.tags.map(obj=>obj.label).join(', ')}</p>
                         <p>ISBN:</p>
-                        <p>{book.ISBN}</p>
+                        <p>{book.isbn}</p>
                     </div>
                 )}
                 <div className='fade'/>

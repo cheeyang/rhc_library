@@ -4,7 +4,8 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 admin.initializeApp(functions.config().firebase);
 const db = admin.firestore();
-db.settings({timestampsInSnapshot: true});
+db.settings({timestampsInSnapshots: true});
+
 
 const nodemailer = require('nodemailer');
 // Configure the email transport using the default SMTP transport and a GMail account.
@@ -26,8 +27,11 @@ const mailTransport = nodemailer.createTransport({
 const APP_NAME = 'RHC Library Web App';
 
 exports.sendWelcomeEmail = functions.auth.user().onCreate((user) => {
-    const email = user.email; // The email of the user to be created
-    const displayName = user.displayName;
+    const { email, displayName } = user;
+    if (!email) {
+        //if guest user
+        return null;
+    }
     console.log('Auth User Object Data :: ', user);
     return db.collection("users").doc(user.uid).get().then((doc)=>{
         console.log('docSnapshot :: ', doc);
