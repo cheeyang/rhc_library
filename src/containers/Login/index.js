@@ -40,7 +40,7 @@ class Login extends Component {
     render() {
         return (
             <div className='formWrapper'>
-                <StyledFirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()} />
+                <StyledFirebaseAuth className='FirebaseAuthWrapper' uiConfig={this.uiConfig} firebaseAuth={firebase.auth()} />
             </div>
         )
     }

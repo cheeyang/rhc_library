@@ -98,8 +98,8 @@ class AddBook extends Component {
 
     render() {
         return (
-            <div className='formWrapper'>
-                <form id='addBookForm' className='addBookForm' onSubmit={this._addToLibrary}>
+            <div className='addBookForm'>
+                <form id='addBookForm' onSubmit={this._addToLibrary}>
                     <div>
                         <label htmlFor='title'>Title</label><br/>
                         <input type='text' required name='title' placeholder="e.g. The Pilgrim's Progress" value={this.state.title} onChange={this._updateInput}/>
