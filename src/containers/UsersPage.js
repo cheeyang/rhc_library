@@ -49,7 +49,6 @@ export default class Browse extends Component {
                         <p>{user.email}</p>
                     </div>
                 )}
-                <div className='fade'/>
             </div>
         )
     }

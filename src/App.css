@@ -1,6 +1,6 @@
 :root {
     --headerHeight: 50px;
-    --footerHeight: 80px;
+    --footerHeight: 20px;
     --transparent: #00232900;
     --app-bg-color: #002329FF;
     --text-header:14px;
@@ -11,6 +11,13 @@
 * {
     margin: 0;
     padding: 0;
+}
+
+html,
+body {
+  position: fixed;
+  overflow: hidden;
+  width: 100%;
 }
 
 button {
@@ -34,6 +41,8 @@ button {
     justify-content: center;
     color: white;
     position: relative;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
 }
 
 .fullScreen {
@@ -52,6 +61,12 @@ button {
     top: calc(var(--footerHeight) / -2);
 }
 
+.preLoginHeader {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    border: 0.5px blue solid;
+}
 .NavbarContainer {
     height: var(--headerHeight);
     width: 100%;
@@ -64,6 +79,7 @@ button {
     justify-content: center;
     align-items: center;
     background-color: #00474f;
+    border: 0.5px blue solid;
 }
 .Navbar {
     display: flex;
@@ -98,6 +114,7 @@ button {
 .AppBody {
     display: flex;
     width: 100%;
+    flex-grow: 1;
     height: calc(100% - var(--headerHeight));
     flex-direction: column;
     align-items: center;
@@ -105,31 +122,37 @@ button {
     color: white;
     overflow-y: scroll;
     position: relative;
+    border: 1px red dashed;
 }
 
 .fade {
-    width: 100%;
+    width: 100vw;
     height: 100px;
-    position: sticky;
-    bottom: -1px;
+    position: fixed;
+    bottom: 20px;
     z-index: 1;
     pointer-events: none;
-    background: -moz-linear-gradient(top, var(--transparent) 0%, var(--app-bg-color) 90%);
-    background: -webkit-linear-gradient(top, var(--transparent) 0%, var(--app-bg-color) 90%);
-    background: -o-linear-gradient(top, var(--transparent) 0%, var(--app-bg-color) 90%);
-    background: -ms-linear-gradient(top, var(--transparent) 0%, var(--app-bg-color) 90%);
-    background: linear-gradient(to bottom, var(--transparent) 0%, var(--app-bg-color) 90%);
+    background: -moz-linear-gradient(top, var(--transparent) 0%, var(--app-bg-color) 100%);
+    background: -webkit-linear-gradient(top, var(--transparent) 0%, var(--app-bg-color) 100%);
+    background: -o-linear-gradient(top, var(--transparent) 0%, var(--app-bg-color) 100%);
+    background: -ms-linear-gradient(top, var(--transparent) 0%, var(--app-bg-color) 100%);
+    background: linear-gradient(to bottom, var(--transparent) 0%, var(--app-bg-color) 100%);
 }
 
 .AppFooterWrapper {
     font-size: var(--text-fineprint);
     padding: 5px;
-    margin-bottom: var(--footerHeight);
+    position: fixed;
+    z-index: 1;
+    background-color: var(--app-bg-color);
+    width: 100%;
+    bottom: 0;
 }
 
 .listContainer {
     width: 90%;
     flex-grow: 1;
+    padding-bottom: 100px;
 }
 .listItem {
     display: grid;
@@ -156,9 +179,9 @@ button {
 /****@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@***/
 .formWrapper {
     position: relative;
-    top: calc(var(--footerHeight) / -2);
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     flex-grow: 1;
@@ -168,6 +191,7 @@ button {
     position: relative;
     width: 100%;
     height: 100%;
+    margin-top: calc(var(--headerHeight) + 5%);
     margin-left: 5%;
     margin-right: 5%;
 }

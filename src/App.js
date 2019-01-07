@@ -43,6 +43,7 @@ class App extends Component {
                             <Route exact path='/page-not-found' component={PageNotFound}/>
                         </Switch>
                     </div>
+                    <div className='fade'/>
                     <AppFooter/>
                 </div>
             </Router>
