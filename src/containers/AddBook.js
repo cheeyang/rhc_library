@@ -15,10 +15,13 @@ const options = [
     {value: 'joy', label: 'Joy'},
     {value: 'prayer', label: 'Prayer'},
     {value: 'apologetics', label: 'Apologetics'},
-    {value: 'fiction', label: 'Fiction'}
+    {value: 'fiction', label: 'Fiction'},
+    {value: 'worship', label: 'Worship'},
+    {value: 'evangelism', label: 'Evangelism'},
 ];
 const selectStyles = {
-    valueContainer: (presets)=>({...presets,height:20})
+    valueContainer: (presets)=>({...presets,height:20}),
+    menu: (presets) => ({...presets,height:'150px',overflow:'scroll'})
 }
 const INITIAL_STATE = {
     title: '',

@@ -14,6 +14,7 @@ import { connect } from 'react-redux';
 import firebase from 'firebase';
 import { updateUser } from 'containers/Login/actions';
 import { bindActionCreators } from 'redux';
+import Fade from 'components/Fade';
 
 class App extends Component {
 
@@ -43,7 +44,7 @@ class App extends Component {
                             <Route exact path='/page-not-found' component={PageNotFound}/>
                         </Switch>
                     </div>
-                    <div className='fade'/>
+                    <Fade/>
                     <AppFooter/>
                 </div>
             </Router>
