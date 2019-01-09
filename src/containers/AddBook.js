@@ -3,6 +3,7 @@ import firebase from 'config/firebase';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom'
 import Select from 'react-select';
+import './AddBook.css';
 
 const db = firebase.firestore();
 db.settings({

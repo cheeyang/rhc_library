@@ -26,6 +26,8 @@ button {
     border: unset;
 }
 
+/*=========================== App.js ============================*/
+
 .rhcLogo {
     height: 100px;
     resize: both;
@@ -46,69 +48,7 @@ button {
     -webkit-overflow-scrolling: touch;
 }
 
-.fullScreen {
-    position: absolute;
-    top: var(--headerHeight);
-    left: 0;
-    height: calc(100% - var(--headerHeight));
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #002329A7;
-}
-.loadingIcon {
-    position: relative;
-    top: calc(-1.5 * var(--headerHeight));
-}
 
-.preLoginHeader {
-    width: 100%;
-    position: sticky;
-    top: 0;
-}
-.NavbarContainer {
-    height: var(--headerHeight);
-    width: 100%;
-    display: flex;
-    position: sticky;
-    top:0;
-    opacity: 1;
-    z-index: 1;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    background-color: #00474f;
-}
-.Navbar {
-    display: flex;
-    flex-grow: 1;
-    height: 100%;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-.Navbar-item {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-}
-.NavbarContainer .logOutIcon {
-    position: absolute;
-    height: var(--headerHeight);
-    color: white;
-    padding-top: 5px;
-    right: 20px;
-}
-.NavbarContainer .drawerIcon {
-    position: absolute;
-    height: var(--headerHeight);
-    color: white;
-    padding-top: 5px;
-    left: 20px;
-}
 
 .AppBody {
     display: flex;
@@ -147,6 +87,29 @@ button {
     bottom: 0;
 }
 
+/*=========================UsersPage.js & Browse.js===========================*/
+.fullScreen {
+    position: absolute;
+    top: var(--headerHeight);
+    left: 0;
+    height: calc(100% - var(--headerHeight));
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #002329A7;
+}
+.loadingIcon {
+    position: relative;
+    top: calc(-1.5 * var(--headerHeight));
+}
+
+.preLoginHeader {
+    width: 100%;
+    position: sticky;
+    top: 0;
+}
+
 .listContainer {
     width: 90%;
     flex-grow: 1;
@@ -162,91 +125,20 @@ button {
     border: 0.5px lightblue solid;
     margin-top: 10px;
     margin-bottom: 10px;
-}
-
-.errorMsg {
-    font-size: var(--text-body);
-    color: red;
-}
-
-.successMsg {
-    font-size: var(--text-header);
-    color: white;
-}
-
-/****@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@***/
-.formWrapper {
     position: relative;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex-grow: 1;
+}
+.listItem .borrowedIcon {
+    height: 30px;
+    resize: both;
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
 }
 
+/*============================Login.js===========================*/
 .FirebaseAuthWrapper {
     position: relative;
     top: calc(-1.5 * var(--headerHeight));
-}
-
-.addBookForm {
-    position: relative;
-    width: 90%;
-    height: calc(100% - var(headerHeight));
-    margin-top: 5%;
-}
-
-form input {
-    margin: 3px;
-    width: calc(100% - 21px);
-    border-width: 0;
-    padding: 3px;
-    padding-left: 10px;
-    height: 30px;
-    font-size: var(--text-body);
-    border-radius: 3px;
-}
-form .reactSelect {
-    margin: 3px;
-    width: calc(100% - 8px);
-    font-size: var(--text-body);
-    color: var(--app-bg-color);
-}
-
-form label {
-    font-size: var(--text-header);
-    position: absolute;
-    left: 5px;
-    margin-top: 2px;
-}
-
-.formButtonGroup {
-    font-size: var(--text-body);
-    margin: 20px;
-}
-.formButtonGroup hr {
-    width: 20px;
-    display: inline-block;
-    position: relative;
-    transform: translate(0,-3px);
-}
-
-.addButton, .browseButton {
-    width: 100px;
-    height: 30px;
-    margin: 15px;
-    background-color: #777777;
-    border-radius: 5px;
-    color: white;
-    font-size: var(--text-body)
-}
-.addBookForm .formButtonGroup .browseButton {
-    background-color: #555555;
-    height: 20px;
-    width: 60px;
-    font-size: var(--text-fineprint);
-    border: 0.5px solid white;
 }
 
 .pageNotFoundText {

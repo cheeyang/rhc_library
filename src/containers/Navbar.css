@@ -1,0 +1,42 @@
+.NavbarContainer {
+    height: var(--headerHeight);
+    width: 100%;
+    display: flex;
+    position: sticky;
+    top:0;
+    opacity: 1;
+    z-index: 1;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #00474f;
+}
+.Navbar {
+    display: flex;
+    flex-grow: 1;
+    height: 100%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.Navbar-item {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+.NavbarContainer .logOutIcon {
+    position: absolute;
+    height: var(--headerHeight);
+    color: white;
+    padding-top: 5px;
+    right: 20px;
+}
+.NavbarContainer .drawerIcon {
+    position: absolute;
+    height: var(--headerHeight);
+    color: white;
+    padding-top: 5px;
+    left: 20px;
+}

@@ -7,6 +7,7 @@ import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
 import ListItemText from '@material-ui/core/ListItemText';
 import Drawer from '@material-ui/core/Drawer';
+import './Navbar.css';
 
 class Navbar extends Component {
     constructor(props) {

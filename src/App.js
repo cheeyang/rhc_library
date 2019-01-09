@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Register from './containers/Register';
 import Navbar from 'containers/Navbar';
-import Browse from './containers/Browse';
-import Login from './containers/Login';
+import Browse from './containers/Browse/';
+import Login from './containers/Login/';
 import UsersPage from './containers/UsersPage';
 import AddBook from 'containers/AddBook';
 import PreLoginHeader from './components/PreLoginHeader';
@@ -15,6 +15,7 @@ import firebase from 'firebase';
 import { updateUser } from 'containers/Login/actions';
 import { bindActionCreators } from 'redux';
 import Fade from 'components/Fade';
+import CartButton from 'components/CartButton';
 
 class App extends Component {
 
@@ -45,6 +46,7 @@ class App extends Component {
                         </Switch>
                     </div>
                     <Fade/>
+                    <CartButton/>
                     <AppFooter/>
                 </div>
             </Router>

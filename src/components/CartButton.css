@@ -1,0 +1,30 @@
+@keyframes slideup {
+    from {bottom: -40px;opacity: 0;}
+    to {bottom: 0px;opacity: 1;}
+}
+@keyframes slidedown {
+    from {bottom: 0px;opacity: 1;}
+    to {bottom: -40px;opacity: 0;}
+}
+
+.cartButtonWrapper {
+    width: 100%;
+}
+
+.cartButton {
+    position: fixed;
+    bottom: 0px;
+    height: 40px;
+    z-index: 2;
+    width: 100%;
+    background-color: green;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+}
+.cartButton.show {
+    animation-name: slideup;
+}
+.cartButton.hide {
+    animation-name: slidedown;
+}
