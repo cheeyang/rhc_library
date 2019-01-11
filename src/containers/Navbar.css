@@ -9,7 +9,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    background-color: #00474f;
+    background-color: var(--navbar-color);
 }
 .Navbar {
     display: flex;

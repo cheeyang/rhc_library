@@ -21,6 +21,7 @@ class Navbar extends Component {
             'Users' : '/users',
             'Browse' : '/browse',
             'Add A Book' : '/add',
+            'Confirmation' : '/confirmation',
             'Account' : '/account',
         }
     }

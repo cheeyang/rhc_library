@@ -4,6 +4,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { selectBook } from './actions';
+import BookInfoCard from 'components/BookInfoCard';
 
 const db = firebase.firestore();
 db.settings({
@@ -53,6 +54,8 @@ class Browse extends Component {
         }
     }
 
+
+
     render() {
         return (
             <div className='listContainer'>
@@ -61,24 +64,11 @@ class Browse extends Component {
                         <CircularProgress className='loadingIcon'/>
                     </div>
                 : this.state.books && this.state.books.map((book, i)=>
-                    <div className='listItem' onClick={()=>this.props.selectBook(book.id)} key={i}>
-                        <p>Title:</p>
-                        <p>{book.title}</p>
-                        <p>Author:</p>
-                        <p>{book.author}</p>
-                        <p>Tags:</p>
-                        <p>{book.tags.map(obj=>obj.label).join(', ')}</p>
-                        <p>ISBN:</p>
-                        <p>{book.isbn}</p>
-                        {this.props.browse.bookIdsSelected.includes(book.id)
-                            ? <img className='borrowedIcon' src={require('resources/images/rhcLogoSample.png')}/>
-                            : null
-                        }
-                    </div>
+                    <BookInfoCard book={book} index={i}/>
                 )}
             </div>
         )
     }
 }
 
-export default connect(({browse})=>({browse}),(dispatch)=>bindActionCreators({selectBook},dispatch))(Browse);
+export default connect(({browse})=>({browse}))(Browse);

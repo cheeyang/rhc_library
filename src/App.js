@@ -5,6 +5,7 @@ import Browse from './containers/Browse/';
 import Login from './containers/Login/';
 import UsersPage from './containers/UsersPage';
 import AddBook from 'containers/AddBook';
+import Confirmation from 'containers/Confirmation';
 import PreLoginHeader from './components/PreLoginHeader';
 import PageNotFound from 'containers/PageNotFound';
 import AppFooter from 'containers/AppFooter';
@@ -42,6 +43,7 @@ class App extends Component {
                             <Route exact path='/browse' component={Browse}/>
                             <Route exact path='/users' component={UsersPage}/>
                             <Route exact path='/add' component={AddBook}/>
+                            <Route exact path='/confirmation' component={Confirmation}/>
                             <Route exact path='/page-not-found' component={PageNotFound}/>
                         </Switch>
                     </div>

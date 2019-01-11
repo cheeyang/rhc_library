@@ -19,6 +19,10 @@ const options = [
     {value: 'fiction', label: 'Fiction'},
     {value: 'worship', label: 'Worship'},
     {value: 'evangelism', label: 'Evangelism'},
+    {value: 'ministry', label: 'Ministry'},
+    {value: 'burnout', label: 'Burnout'},
+    {value: 'gospel', label: 'Gospel'},
+    {value: 'theology', label: 'Theology'}
 ];
 const selectStyles = {
     valueContainer: (presets)=>({...presets,height:20}),

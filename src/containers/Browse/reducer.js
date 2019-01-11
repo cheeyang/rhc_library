@@ -20,6 +20,11 @@ const BrowseReducer = (state=INITIAL_STATE, action) => {
                     bookIdsSelected: [...state.bookIdsSelected, action.payload]
                 }
             }
+        case 'CLEAR_SELECTED':
+            return {
+                ...state,
+                bookIdsSelected: []
+            }
         default:
             return state;
     }

@@ -2,6 +2,7 @@
     --headerHeight: 50px;
     --footerHeight: 20px;
     --transparent: #00232900;
+    --navbar-color: #00474f;
     --app-bg-color: #002329FF;
     --text-header:14px;
     --text-body: 12px;
@@ -128,7 +129,7 @@ button {
     position: relative;
 }
 .listItem .borrowedIcon {
-    height: 30px;
+    height: 12px;
     resize: both;
     position: absolute;
     right: 5px;
