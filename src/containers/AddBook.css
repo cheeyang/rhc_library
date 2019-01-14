@@ -54,13 +54,13 @@ form label {
     width: 100px;
     height: 30px;
     margin: 15px;
-    background-color: #777777;
+    background-color: var(--neutral-gray);
     border-radius: 5px;
     color: white;
     font-size: var(--text-body)
 }
 .addBookForm .formButtonGroup .browseButton {
-    background-color: #555555;
+    background-color: var(--neutral-gray-lighter);
     height: 20px;
     width: 60px;
     font-size: var(--text-fineprint);

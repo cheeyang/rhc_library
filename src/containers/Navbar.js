@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Icon } from 'antd'
 import firebase from 'firebase';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { clearSelected } from 'containers/Browse/actions.js';
 import { withRouter } from 'react-router-dom';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -23,6 +26,7 @@ class Navbar extends Component {
             'Add A Book' : '/add',
             'Confirmation' : '/confirmation',
             'Account' : '/account',
+            'Thank You': '/thankyou',
         }
     }
     _onPressLogout = () => {
@@ -40,6 +44,7 @@ class Navbar extends Component {
     }
 
     _onClickDrawerElement = (text) => {
+        this.props.clearSelected();
         const newRoute = this.routeTitleMapping[text];
         switch(text) {
             case 'Logout' :
@@ -98,4 +103,4 @@ class Navbar extends Component {
     }
 }
 
-export default withRouter(Navbar);
+export default withRouter(connect(null,(dispatch)=>bindActionCreators({clearSelected}, dispatch))(Navbar));

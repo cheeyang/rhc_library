@@ -45,17 +45,6 @@ class Browse extends Component {
         this.setState({[event.target.name] : event.target.value}, ()=>console.log('updated state :: ',this.state));
     }
 
-    _addToCart = bookId => {
-        if (this.state.bookIdsSelected.includes(bookId)) {
-            console.log('removing from cart');
-            this.setState((prevState)=>({bookIdsSelected: prevState.bookIdsSelected.filter(id=> (id!==bookId))}), ()=>console.log('removed bookId from bookIdsSelected :: ', this.state))
-        } else {
-            this.setState((prevState)=>({bookIdsSelected: [...prevState.bookIdsSelected, bookId]}), ()=>{console.log('added bookId to bookIdsSelected :: ', this.state)});
-        }
-    }
-
-
-
     render() {
         const { books } = this.props.browse;
         return (
