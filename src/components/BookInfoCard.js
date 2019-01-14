@@ -12,9 +12,9 @@ class Book extends Component {
         }
     }
     render() {
-        const { book, index } = this.props;
+        const { book, key } = this.props;
         return (
-            <div style={this._selectedStyle(book.id)} className='listItem' onClick={()=>this.props.selectBook(book.id)} key={index}>
+            <div style={this._selectedStyle(book.id)} className='listItem' onClick={()=>this.props.selectBook(book.id)} key={key}>
                 <p>Title:</p>
                 <p>{book.title}</p>
                 <p>Author:</p>

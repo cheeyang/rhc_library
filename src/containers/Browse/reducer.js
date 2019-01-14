@@ -2,6 +2,7 @@ import React from 'react';
 
 const INITIAL_STATE = {
     bookIdsSelected: [],
+    books: []
 }
 
 const BrowseReducer = (state=INITIAL_STATE, action) => {
@@ -24,6 +25,11 @@ const BrowseReducer = (state=INITIAL_STATE, action) => {
             return {
                 ...state,
                 bookIdsSelected: []
+            }
+        case 'UPDATE_BOOKS':
+            return {
+                ...state,
+                books: action.payload
             }
         default:
             return state;

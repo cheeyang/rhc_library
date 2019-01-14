@@ -3,6 +3,7 @@ import firebase from 'config/firebase';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { updateBooks } from './actions';
 import { selectBook } from './actions';
 import BookInfoCard from 'components/BookInfoCard';
 
@@ -15,7 +16,6 @@ class Browse extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            books: null,
             isLoading: false,
         }
     }
@@ -36,8 +36,8 @@ class Browse extends Component {
                 bookData.id = doc.id;
                 return bookData;
             })
-
-            this.setState({books: books, isLoading: false}, ()=>console.log(this.state));
+            this.props.updateBooks(books);
+            this.setState({isLoading: false}, ()=>console.log(this.state));
         })
     }
 
@@ -57,18 +57,19 @@ class Browse extends Component {
 
 
     render() {
+        const { books } = this.props.browse;
         return (
             <div className='listContainer'>
                 { this.state.isLoading ?
                     <div className='fullScreen'>
                         <CircularProgress className='loadingIcon'/>
                     </div>
-                : this.state.books && this.state.books.map((book, i)=>
-                    <BookInfoCard book={book} index={i}/>
+                : !!books && books.map((book, i)=>
+                    <BookInfoCard book={book} key={i}/>
                 )}
             </div>
         )
     }
 }
 
-export default connect(({browse})=>({browse}))(Browse);
+export default connect(({browse})=>({browse}), (dispatch)=>bindActionCreators({updateBooks},dispatch))(Browse);
