@@ -25,10 +25,11 @@ class Browse extends Component {
     }
 
     fetchBooks = () => {
+        //show loading indicator
         this.setState({isLoading: true});
-
-        const booksRef = db.collection('books')
-        booksRef.get().then( querySnapshot => {
+        //fetch books data from firestore
+        const booksRef = db.collection('books');
+        booksRef.where('loanData','==',null).orderBy('title','asc').get().then( querySnapshot => {
             const booksCollection = querySnapshot.docs;
             console.log('booksCollection :: ', booksCollection);
             const books = booksCollection.map((doc) => {
@@ -36,7 +37,9 @@ class Browse extends Component {
                 bookData.id = doc.id;
                 return bookData;
             })
+            //populate redux store
             this.props.updateBooks(books);
+            //hide loading indicator
             this.setState({isLoading: false}, ()=>console.log(this.state));
         })
     }

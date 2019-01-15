@@ -90,13 +90,13 @@ class Navbar extends Component {
                     </div>
                 </Drawer>
                 <button className='drawerIcon' onClick={this._openDrawer}>
-                    <Icon className='icon' type="menu-unfold" style={{fontSize:17}}/>
+                    <Icon className='icon' type="bars"/>
                 </button>
                 <div className='Navbar'>
                     <span className='Navbar-item'>{this._getTitleFromRoute(this.props.location.pathname)}</span>
                 </div>
                 <button className='logOutIcon' onClick={this._onPressLogout}>
-                    <Icon className='icon' type="poweroff" style={{fontSize:17}}/>
+                    <Icon className='icon' type="poweroff"/>
                 </button>
             </div>
         )

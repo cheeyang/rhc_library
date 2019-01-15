@@ -29,6 +29,7 @@
 .NavbarContainer .logOutIcon {
     position: absolute;
     height: var(--headerHeight);
+    font-size: 17px;
     color: white;
     padding-top: 5px;
     right: 20px;
@@ -36,6 +37,7 @@
 .NavbarContainer .drawerIcon {
     position: absolute;
     height: var(--headerHeight);
+    font-size: 20px;
     color: white;
     padding-top: 5px;
     left: 20px;

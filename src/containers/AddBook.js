@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 import firebase from 'config/firebase';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom'
@@ -22,7 +23,11 @@ const options = [
     {value: 'ministry', label: 'Ministry'},
     {value: 'burnout', label: 'Burnout'},
     {value: 'gospel', label: 'Gospel'},
-    {value: 'theology', label: 'Theology'}
+    {value: 'theology', label: 'Theology'},
+    {value: 'sanctification', label: 'Sanctification'},
+    {value: 'holiness', label: 'Holiness'},
+    {value: 'sovereignty', label: `God's Sovereignty`},
+    {value: 'work', label: 'Work'}
 ];
 const selectStyles = {
     valueContainer: (presets)=>({...presets,height:20}),
@@ -47,41 +52,6 @@ class AddBook extends Component {
         this.setState({[event.target.name] : event.target.value}, ()=>console.log('updated state :: ',this.state));
     }
 
-    // verifyUser = async (event) => {
-    //     event.preventDefault(); //prevents page from refreshing
-    //
-    //     const { fullName, email, password } = this.state;
-    //
-    //     const querySnap = await db.collection('users').where('email','==',this.state.email).get();
-    //     console.log('query Snapshot :: ', querySnap);
-    //     try {
-    //         const user = querySnap.docs[0].data();
-    //         console.log('first user retrieved :: ',user);
-    //         if (this.state.password===user.password) {
-    //             this.props.userLogin(user);
-    //             console.log('User logged in successfully :: ', user.email);
-    //             this.setState({
-    //                 email: '',
-    //                 password: '',
-    //             })
-    //         } else {
-    //             throw 'wrong password';
-    //         }
-    //     } catch (err) {
-    //         console.error('user is not defined, login failed :: ', err);
-    //         switch (err) {
-    //             case 'wrong password':
-    //                 this.setState((prevState)=>({...prevState,displayWrongPasswordError:true}));
-    //                 break;
-    //             case 'invalid email':
-    //                 this.setState((prevState)=>({...prevState,displayWrongEmailError:true}));
-    //                 break;
-    //             default:
-    //                 this.setState((prevState)=>({...prevState,displayWrongEmailError:true}));
-    //         }
-    //     }
-    // }
-
     _addToLibrary = async (event) => {
         event.preventDefault(); //stop refresh
         const { title, author, isbn, tags } = this.state;
@@ -91,9 +61,10 @@ class AddBook extends Component {
             uid,
             displayName,
             email,
+            dateAdded: moment().format()
         }
 
-        const docSnapshot = await db.collection('books').add({title, author, isbn, tags, addedBy});
+        const docSnapshot = await db.collection('books').add({title, author, isbn, tags, addedBy, loanData:null});
         this.setState({...INITIAL_STATE, addBookSuccess:true},()=>{
             setTimeout(()=>{
                 this.setState({addBookSuccess:false});

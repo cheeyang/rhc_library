@@ -1,18 +1,40 @@
 import React, { Component } from 'react';
+import firebase from 'config/firebase';
+import moment from 'moment';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { clearSelected } from 'containers/Browse/actions';
 import { bindActionCreators } from 'redux';
 import BookInfoCard from 'components/BookInfoCard';
 
+const db = firebase.firestore();
+db.settings({
+    timestampsInSnapshots: true
+});
+
 class Confirmation extends Component {
     _onConfirmClick = () => {
+        const { bookIdsSelected } = this.props.location.state;
+        // const { books } = this.props.browse;
+        // const updatedBooks = books.filter(book=>!bookIdsSelected.includes(book.id));
+        //update firebase store
+        const booksRef=db.collection('books');
+        bookIdsSelected.forEach(id=>{
+            booksRef.doc(id).set({
+                loanData: {
+                    borrowedBy: this.props.user.uid,
+                    dateBorrowed: moment().format(),
+                }
+            }, {merge: true});
+        })
+        //go to thankyou page
         this.props.history.push({
             pathname: '/thankyou',
             state: {
                 noOfBooks: this.props.location.state.bookIdsSelected.length
             }
         });
+        //clear array of selected books
         this.props.clearSelected();
     }
 
@@ -42,4 +64,4 @@ class Confirmation extends Component {
     }
 }
 
-export default withRouter(connect( ({browse})=>({browse}), (dispatch)=>bindActionCreators({clearSelected},dispatch))(Confirmation));
+export default withRouter(connect( ({browse,session})=>({browse,user:session.user}), (dispatch)=>bindActionCreators({clearSelected},dispatch))(Confirmation));
