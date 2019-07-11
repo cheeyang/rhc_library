@@ -1,0 +1,68 @@
+@keyframes filterIn {
+  from {
+    overflow: hidden;
+  }
+  to {
+    overflow: visible;
+  }
+}
+
+.Filter {
+  width: 90%;
+}
+.filterWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+.filterBody {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 45% 45% 5%;
+  grid-column-gap: 1%;
+  grid-template-rows: 15px 40px;
+  position: relative;
+  opacity: 0;
+  overflow: auto;
+  transition: height 1s, opacity 1s;
+}
+.filterBody.show {
+  height: 70px;
+  opacity: 1;
+}
+.filterBody.hide {
+  height: 0px;
+  opacity: 0;
+}
+.filterBody label {
+  text-align: left;
+  margin-left: 5px;
+  font-size: var(--text-body);
+}
+.filterBody .reactSelect {
+  margin: 3px;
+  width: calc(100% - 8px);
+  font-size: var(--text-fineprint);
+  color: var(--app-bg-color);
+}
+.filterBody .sortIcon {
+  font-size: 20px;
+  margin-top: 7px;
+}
+
+.filterButton {
+  position: fixed;
+  right: 25px;
+  top: 60px;
+  z-index: 3;
+  background-color: #006d75;
+  color: white;
+  font-size: 16px;
+  border-radius: 20px;
+  height: 30px;
+  width: 30px;
+  padding-top: 5px;
+}
